@@ -1,0 +1,51 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>icons/bookstore.png</file>
+    <file>icons/Thiết kế chưa có tên (1).png</file>
+    <file>icons/Thiết kế chưa có tên (1).png</file>
+    <file>icons/1.png</file>
+    <file>icons/borrow (1).png</file>
+    <file>icons/borrow (2).png</file>
+    <file>icons/borrow.png</file>
+    <file>icons/add-to-cart (1).png</file>
+    <file>icons/add-to-cart.png</file>
+    <file>icons/bar-chart (1).png</file>
+    <file>icons/bar-chart.png</file>
+    <file>icons/bill (1).png</file>
+    <file>icons/bill (2).png</file>
+    <file>icons/bill.png</file>
+    <file>icons/dashboard (1).png</file>
+    <file>icons/dashboard (2).png</file>
+    <file>icons/dashboard (3).png</file>
+    <file>icons/dashboard.png</file>
+    <file>icons/employee (1).png</file>
+    <file>icons/employee.png</file>
+    <file>icons/logout (1).png</file>
+    <file>icons/logout (2).png</file>
+    <file>icons/logout (3).png</file>
+    <file>icons/logout.png</file>
+    <file>icons/menu.png</file>
+    <file>icons/open-book (1).png</file>
+    <file>icons/open-book (2).png</file>
+    <file>icons/open-book.png</file>
+    <file>icons/padlock.png</file>
+    <file>icons/profile (1).png</file>
+    <file>icons/profile.png</file>
+    <file>icons/public-relation (1).png</file>
+    <file>icons/public-relation.png</file>
+    <file>icons/research.png</file>
+    <file>icons/setting (1).png</file>
+    <file>icons/setting.png</file>
+    <file>icons/target (1).png</file>
+    <file>icons/target.png</file>
+    <file>icons/teamwork (1).png</file>
+    <file>icons/teamwork (2).png</file>
+    <file>icons/teamwork.png</file>
+    <file>icons/user.png</file>
+    <file>icons/warehouse (1).png</file>
+    <file>icons/warehouse (2).png</file>
+    <file>icons/warehouse (3).png</file>
+    <file>icons/warehouse (4).png</file>
+    <file>icons/warehouse.png</file>
+  </qresource>
+</RCC>
