@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2024 at 07:05 AM
+-- Generation Time: Jul 06, 2024 at 09:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -62,6 +62,17 @@ CREATE TRIGGER `tr_hdb_before_insert` BEFORE INSERT ON `hoadonban` FOR EACH ROW 
     SELECT IFNULL(MAX(CAST(SUBSTRING(hdb_id, 4) AS UNSIGNED)), 0) INTO max_id FROM hoadonban;
     SET new_id = CONCAT('hdb', LPAD(max_id + 1, 3, '0'));
     SET NEW.hdb_id = new_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tr_update_hoadonban_before_update` BEFORE UPDATE ON `hoadonban` FOR EACH ROW BEGIN
+    IF NEW.hdb_trangthai <> OLD.hdb_trangthai THEN
+        IF DATEDIFF(NOW(), OLD.hdb_ngayxuat) > 15 THEN
+            SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Khong the cap nhat trang thai hoa don ban sau 15 ngay!';
+        END IF;
+    END IF;
 END
 $$
 DELIMITER ;
