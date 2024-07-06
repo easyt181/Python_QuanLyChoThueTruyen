@@ -1,0 +1,24 @@
+DỮ LIỆU DÀNH CHO CÁC Selection BOX TRONG CÁC CHỨC NĂNG:
+
+1. Thể Loại Sách
+Sách thiếu nhi
+Sách tâm lý, tình cảm
+Sách tôn giáo
+Sách văn hoá xã hội
+Sách lịch sử
+Sách văn học viễn tưởng
+Sách tiểu sử, tự truyện
+Sách kinh dị, bí ẩn
+Sách khoa học công nghệ
+Sách truyền cảm hứng
+
+2. Nhà xuất bản
+Nhà xuất bản giáo dục Việt Nam
+Nhà xuất bản Trẻ
+Nhà xuất bản Kim Đồng
+Nhà xuất bản chính trị quốc gia sự thật
+Nhà xuất bản Tổng hợp thành phố Hồ Chí Minh
+Nhà xuất bản Tư pháp
+Nhà xuất bản Hội Nhà văn
+Nhà xuất bản lao động
+
