@@ -1,10 +1,10 @@
 from PySide6.QtWidgets import QApplication
-from dangnhap import Login
+from frontPage import MySidebar
 import sys
 
 app = QApplication(sys.argv)
 
-window = Login()
+window = MySidebar()
 
 window.show()
 app.exec()
