@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2024 at 09:55 AM
+-- Generation Time: Jul 07, 2024 at 07:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `chitiethoadon`
 --
+
+CREATE DATABASE db_nhom7_python;
+USE db_nhom7_python;
 
 CREATE TABLE `chitiethoadon` (
   `cthd_id` int(11) NOT NULL,
@@ -89,7 +92,8 @@ CREATE TABLE `hoadonchothue` (
   `hdct_nv_id` varchar(255) DEFAULT NULL,
   `hdct_ngaythue` datetime NOT NULL,
   `hdct_ngayhethan` date NOT NULL,
-  `hdct_tongtien` decimal(10,0) NOT NULL
+  `hdct_tongtien` decimal(19,2) NOT NULL,
+  `hdct_trangthai` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
