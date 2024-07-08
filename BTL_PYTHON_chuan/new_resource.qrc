@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>icons/bill (3).png</file>
+    <file>icons/books.png</file>
+    <file>icons/invoice.png</file>
+    <file>icons/reading-book.png</file>
     <file>icons/1.png</file>
     <file>icons/add-to-cart (1).png</file>
     <file>icons/add-to-cart.png</file>
