@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2024 at 07:59 PM
+-- Generation Time: Jul 09, 2024 at 06:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -97,6 +97,17 @@ CREATE TABLE `hoadonchothue` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `hoadonchothue`
+--
+
+INSERT INTO `hoadonchothue` (`hdct_id`, `hdct_kh_sdt_id`, `hdct_nv_id`, `hdct_ngaythue`, `hdct_ngayhethan`, `hdct_tongtien`, `hdct_trangthai`) VALUES
+('hdct001', '0901234567', 'nv002', '2024-07-10 00:00:00', '2024-07-15', 22500.00, 1),
+('hdct002', NULL, 'nv001', '2024-07-09 00:00:00', '2024-07-14', 5000.00, 1),
+('hdct003', '0943210987', 'nv002', '2024-07-01 00:00:00', '2024-07-08', 31500.00, 2),
+('hdct004', '0965432109', 'nv002', '2024-07-07 00:00:00', '2024-07-08', 13500.00, 0),
+('hdct005', NULL, 'nv001', '2024-07-06 00:00:00', '2024-07-11', 20000.00, 1);
+
+--
 -- Triggers `hoadonchothue`
 --
 DELIMITER $$
@@ -107,6 +118,22 @@ CREATE TRIGGER `tr_hdct_before_insert` BEFORE INSERT ON `hoadonchothue` FOR EACH
     SELECT IFNULL(MAX(CAST(SUBSTRING(hdct_id, 5) AS UNSIGNED)), 0) INTO max_id FROM hoadonchothue;
     SET new_id = CONCAT('hdct', LPAD(max_id + 1, 3, '0'));
     SET NEW.hdct_id = new_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_hdct_trangthai` BEFORE INSERT ON `hoadonchothue` FOR EACH ROW BEGIN
+    IF NEW.hdct_trangthai = 1 AND DATE_ADD(NEW.hdct_ngayhethan, INTERVAL 1 DAY) < CURDATE() THEN
+        SET NEW.hdct_trangthai = 2;
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_update_hdct_trangthai` BEFORE UPDATE ON `hoadonchothue` FOR EACH ROW BEGIN
+    IF NEW.hdct_trangthai = 1 AND DATE_ADD(NEW.hdct_ngayhethan, INTERVAL 1 DAY) < CURDATE() THEN
+        SET NEW.hdct_trangthai = 2;
+    END IF;
 END
 $$
 DELIMITER ;
@@ -345,6 +372,19 @@ CREATE TABLE `phieuchothue` (
   `pct_thanhtien` decimal(19,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `phieuchothue`
+--
+
+INSERT INTO `phieuchothue` (`pct_id`, `pct_hdct_id`, `pct_s_id`, `pct_dongia`, `pct_soluong`, `pct_thanhtien`) VALUES
+(1, 'hdct001', 'sach001', 4500.00, 2, 9000.00),
+(2, 'hdct001', 'sach002', 4500.00, 3, 13500.00),
+(3, 'hdct002', 'sach003', 5000.00, 1, 5000.00),
+(4, 'hdct003', 'sach004', 4500.00, 5, 22500.00),
+(5, 'hdct003', 'sach005', 4500.00, 2, 9000.00),
+(6, 'hdct004', 'sach006', 4500.00, 3, 13500.00),
+(7, 'hdct005', 'sach007', 5000.00, 4, 20000.00);
+
 -- --------------------------------------------------------
 
 --
@@ -367,20 +407,23 @@ CREATE TABLE `sach` (
 
 INSERT INTO `sach` (`s_id`, `s_tensach`, `s_theloaisach`, `s_nhaxuatban`, `s_gia`, `s_soluong`, `s_trangthai`) VALUES
 ('sach001', 'Cuộc Phiêu Lưu Của TinTin', 'Sách thiếu nhi', 'Nhà xuất bản Kim Đồng', 50000.00, 100, 1),
-('sach002', 'Đắc Nhân Tâm', 'Sách tâm lý, tình cảm', 'Nhà xuất bản Trẻ', 80000.00, 200, 1),
+('sach002', 'Đắc Nhân Tâm', 'Sách tâm lý, tình cảm', 'Nhà xuất bản Trẻ', 50000.00, 200, 1),
 ('sach003', 'Bí Mật Tư Duy Phản Biện', 'Sách tôn giáo', 'Nhà xuất bản giáo dục Việt Nam', 90000.00, 0, 0),
-('sach004', 'Lịch Sử Việt Nam', 'Sách lịch sử', 'Nhà xuất bản chính trị quốc gia sự thật', 120000.00, 75, 1),
-('sach005', 'Harry Potter và Hòn Đá Phù Thủy', 'Sách văn học viễn tưởng', 'Nhà xuất bản Trẻ', 150000.00, 300, 1),
+('sach004', 'Lịch Sử Việt Nam', 'Sách lịch sử', 'Nhà xuất bản chính trị quốc gia sự thật', 100000.00, 278, 1),
+('sach005', 'Harry Potter và Hòn Đá Phù Thủy', 'Sách văn học viễn tưởng', 'Nhà xuất bản Trẻ', 69000.00, 300, 1),
 ('sach006', 'Steve Jobs - Hành Trình Đến Thành Công', 'Sách tiểu sử, tự truyện', 'Nhà xuất bản lao động', 170000.00, 120, 1),
 ('sach007', 'Nhà Giả Kim', 'Sách kinh dị, bí ẩn', 'Nhà xuất bản Hội Nhà văn', 100000.00, 90, 1),
 ('sach008', 'Tự Học IELTS', 'Sách khoa học công nghệ', 'Nhà xuất bản Tổng hợp thành phố Hồ Chí Minh', 250000.00, 110, 1),
 ('sach009', 'Hạt Giống Tâm Hồn', 'Sách truyền cảm hứng', 'Nhà xuất bản Trẻ', 130000.00, 200, 1),
-('sach010', 'Kỹ Năng Sống Cho Trẻ', 'Sách thiếu nhi', 'Nhà xuất bản Kim Đồng', 60000.00, 180, 1),
-('sach011', 'Tình Yêu Không Có Lỗi, Lỗi Ở Bạn Thân', 'Sách tâm lý, tình cảm', 'Nhà xuất bản Tư pháp', 75000.00, 150, 1),
+('sach010', 'Kỹ Năng Sống Cho Trẻ', 'Sách thiếu nhi', 'Nhà xuất bản Kim Đồng', 40000.00, 180, 1),
+('sach011', 'Tình Yêu Không Có Lỗi, Lỗi Ở Bạn Thân', 'Sách tâm lý, tình cảm', 'Nhà xuất bản Tư pháp', 65000.00, 150, 1),
 ('sach012', 'Tâm Linh Và Sự Sống Sau Khi Chết', 'Sách tôn giáo', 'Nhà xuất bản giáo dục Việt Nam', 90000.00, 100, 1),
 ('sach013', 'Văn Hoá Việt Nam', 'Sách văn hoá xã hội', 'Nhà xuất bản chính trị quốc gia sự thật', 115000.00, 130, 1),
 ('sach014', 'The Lord of The Rings', 'Sách văn học viễn tưởng', 'Nhà xuất bản Trẻ', 180000.00, 90, 1),
-('sach015', 'Nguyễn Ái Quốc - Hồ Chí Minh', 'Sách tiểu sử, tự truyện', 'Nhà xuất bản lao động', 160000.00, 80, 1);
+('sach015', 'Nguyễn Ái Quốc - Hồ Chí Minh', 'Sách tiểu sử, tự truyện', 'Nhà xuất bản lao động', 160000.00, 80, 1),
+('sach016', 'Hiểu người để dùng người - Lưu Thiệu', 'Sách văn hoá xã hội', 'Nhà xuất bản lao động', 100000.00, 0, 0),
+('sach017', 'Đại Việt sử ký toàn thư - Nhiều tác giả', 'Sách lịch sử', 'Nhà xuất bản chính trị quốc gia sự thật', 150000.00, 0, 0),
+('sach018', 'Tam Quốc Diễn Nghĩa - Phần 1 - La Quán Trung', 'Sách lịch sử', 'Nhà xuất bản Hội Nhà văn', 100000.00, 0, 0);
 
 --
 -- Triggers `sach`
@@ -532,7 +575,7 @@ ALTER TABLE `chitiethoadon`
 -- AUTO_INCREMENT for table `phieuchothue`
 --
 ALTER TABLE `phieuchothue`
-  MODIFY `pct_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
