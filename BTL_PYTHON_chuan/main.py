@@ -1,14 +1,11 @@
 from PySide6.QtWidgets import QApplication
-from frontPage import MySidebar
-from hoadonban import HoaDonBan
 from dangnhap import Login
-
-import mysql.connector
 import sys
 
 app = QApplication(sys.argv)
 
-window = MySidebar()
+# Mở màn hình đăng nhập
+loginWindow = Login()
+loginWindow.show()
 
-window.show()
 app.exec()
